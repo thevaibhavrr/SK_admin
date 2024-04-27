@@ -1,7 +1,7 @@
 .main_admin_sidebar{
     background: var(--gay-bg-color);
-    max-width: 450px;
-    min-width:400px;
+    max-width: 400px;
+    min-width:300px;
     height: 100vh;
 }
 .admin_sidebar{

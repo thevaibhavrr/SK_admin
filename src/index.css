@@ -26,8 +26,10 @@ code {
 
 :root {
   /* --gay-bg-color: rgb(130, 130, 123); */
-  --gay-bg-color: rgb(110, 103, 110);
-  --main-white-color: white;
+  /* --gay-bg-color: rgb(110, 103, 110); */
+  --gay-bg-color: #76ABAE;
+  /* --main-white-color: white; */
+  --main-white-color: #EEEEEE;
 }
 .Link_tag{
   text-decoration: none;
