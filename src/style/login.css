@@ -189,9 +189,9 @@
     width: 100%;
     border: none;
     /* background-color: rgb(162, 104, 255); */
-    background-color: var(--gay-bg-color);
+    background-color: #5fa4a7;
     height: 40px;
-    color: white;
+    color: rgb(3, 2, 2);
     font-size: .8em;
     font-weight: 500;
     letter-spacing: 1px;
