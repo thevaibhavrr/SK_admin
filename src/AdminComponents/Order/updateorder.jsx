@@ -54,7 +54,7 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
         updatedOrderData
       );
       console.log(response, "udpated");
-      // onClose();
+      onClose();
     } catch (error) {
       console.log(error);
     }
