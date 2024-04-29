@@ -17,10 +17,13 @@
   margin-bottom: 20px;
 }
 
+
 .main_admin_all_product_filter_bar > div {
   flex: 1;
   margin-right: 10px;
 }
+
+
 
 .inputBox_container {
   position: relative;
@@ -72,7 +75,17 @@
   max-width: 100%;
   border-radius: 8px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
+.bw-image{
+  filter: grayscale(100%) !important;
+  transition: all 0.3s ease;
+}
+
+.bw-image:hover {
+  filter: grayscale(0%) !important;
+}
+
 
 .product-card h3 {
   color: var(--primary-color);
@@ -148,6 +161,8 @@
   background-color: var(--primary-color);
   color: white;
 }
+
+
 
 /* Loader Styles */
 .loader {
