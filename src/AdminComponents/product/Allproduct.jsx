@@ -28,7 +28,6 @@ const Allproduct = () => {
           "GET"
         );
         setProducts(response.data.products);
-        console.log("ResultPerPage", ResultPerPage);
         setToalProduct(response.data.totalProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -173,7 +172,7 @@ const Allproduct = () => {
             </div>
             <div className="product-list">
 
-              {products.map((product) => (
+              {products.map((product) => ( 
                 <div key={product._id} className="product-card">
                   <img
                     src={product.thumbnail}

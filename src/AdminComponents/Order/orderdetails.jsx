@@ -73,7 +73,7 @@ function Orderdetails() {
                   <div>
                     <div>Delivered date</div>
                     <div>
-                      {new Date(order.deliveredAt).toLocaleString("en-US", {
+                      {new Date(order?.deliveredAt).toLocaleString("en-US", {
                         timeZone: "UTC",
                       })}
                     </div>
@@ -94,7 +94,7 @@ function Orderdetails() {
             <div className="mini_order_dashboard_contact_div">
               <div>updatedAt</div>
               <div>
-                {new Date(order.updatedAt).toLocaleString("en-US", {
+                {new Date(order?.updatedAt).toLocaleString("en-US", {
                   timeZone: "UTC",
                 })}
               </div>
@@ -201,27 +201,27 @@ function Orderdetails() {
                 {order?.CartId?.orderItems?.map((item, index) => (
                   <div key={index} className="order_item_details_div" >
                     <img
-                      src={item.productId.thumbnail}
+                      src={item?.productId?.thumbnail}
                       alt="Product"
                       className="product-thumbnail"
                     />
                     <p>
-                      <b>Name:</b> {item.productId.name}
+                      <b>Name:</b> {item?.productId?.name}
                     </p>
                     <p>
-                      <b>Price:</b> {item.productId.price}
+                      <b>Price:</b> {item?.productId?.price}
                     </p>
                     <p>
-                      <b>Quantity:</b> {item.quantity}
+                      <b>Quantity:</b> {item?.quantity}
                     </p>
                     <p>
-                      <b>Total Price:</b> {item.totalPrice}
+                      <b>Total Price:</b> {item?.totalPrice}
                     </p>
                     <p>
-                      <b>Brand:</b> {item.productId.brand}
+                      <b>Brand:</b> {item?.productId?.brand}
                     </p>
                     <p>
-                      <b>Product Id:</b> {item._id}
+                      <b>Product Id:</b> {item?._id}
                     </p>
                   </div>
                 ))}

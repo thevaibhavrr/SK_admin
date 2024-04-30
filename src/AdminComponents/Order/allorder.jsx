@@ -86,7 +86,7 @@
 //               <div key={index} className="order_list_container">
 //                 {/* product details */}
 //                 <div>
-//                   {data?.orderItems?.map((item, index) => (
+//                   {data?.orderItems?.map((item?, index) => (
 //                     <div key={index} className="order_item_details">
 //                       <div>
 //                         <img
@@ -278,41 +278,41 @@ function AllOrder() {
                 <div>
                 <div key={order._id} className="order_list_container">
                   <div>
-                    {order.CartId.orderItems.map((item) => (
-                      <div key={item._id} className="order_item_details">
+                    {order.CartId?.orderItems?.map((item) => (
+                      <div key={item?._id} className="order_item_details">
                         <div>
-                          <img src={item.productId.thumbnail} alt="thumbnail" className="all_order_thumbnail" />
+                          <img src={item?.productId?.thumbnail} alt="thumbnail" className="all_order_thumbnail" />
                         </div>
                         <div>
-                          <p><b>Name:</b> {item.productId.name}</p>
-                          <p><b>Price:</b> {item.singleProductPrice}</p>
+                          <p><b>Name:</b> {item?.productId?.name}</p>
+                          <p><b>Price:</b> {item?.singleProductPrice}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                   <div className="order_details all_order_details">
-                    <div><b>Order Id:</b> {order._id}</div>
-                    <div><b>Status:</b> {order.status}</div>
-                    <div><b>Total Price:</b> {order.CartId.totalPrice}</div>
+                    <div><b>Order Id:</b> {order?._id}</div>
+                    <div><b>Status:</b> {order?.status}</div>
+                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
                   </div>
                   <div className="all_order_shippingAddress all_order_details">
-                    <div><b>Pincode:</b> {order.shippingAddress.pincode}</div>
-                    <div><b>State:</b> {order.shippingAddress.state}</div>
-                    <div><b>City:</b> {order.shippingAddress.city}</div>
+                    <div><b>Pincode:</b> {order?.shippingAddress?.pincode}</div>
+                    <div><b>State:</b> {order?.shippingAddress?.state}</div>
+                    <div><b>City:</b> {order?.shippingAddress?.city}</div>
                   </div>
                   <div className="all_order_other_details all_order_details">
-                    <div><b>Payment Method:</b> {order.paymentMethod}</div>
-                    <div><b>Created At:</b> {new Date(order.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}</div>
+                    <div><b>Payment Method:</b> {order?.paymentMethod}</div>
+                    <div><b>Created At:</b> {new Date(order?.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}</div>
                   </div>
                   <div className="all_order_price_details all_order_details">
-                    <div><b>Total Price:</b> {order.CartId.totalPrice}</div>
-                    <div><b>Shipping Price:</b> {order.CartId.shippingPrice}</div>
-                    <div><b>Tax Price:</b> {order.CartId.taxPrice}</div>
+                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
+                    <div><b>Shipping Price:</b> {order?.CartId?.shippingPrice}</div>
+                    <div><b>Tax Price:</b> {order?.CartId?.taxPrice}</div>
                   </div>
                 </div>
                   <div className="all_order_buttons_div">
-                    <Link to={`/admin/order/${order._id}`} className="all_order_order_view_button">View Order</Link>
-                    <div className="all_order_order_update_button" onClick={() => handleOpenPopup(order._id)}>Update Order</div>
+                    <Link to={`/admin/order/${order?._id}`} className="all_order_order_view_button">View Order</Link>
+                    <div className="all_order_order_update_button" onClick={() => handleOpenPopup(order?._id)}>Update Order</div>
                   </div>
                 </div>
               ))}
