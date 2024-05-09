@@ -18,13 +18,14 @@ const Allproduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [toalProduct, setToalProduct] = useState(0);
+  const [productType, setProductType] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const response = await makeApi(
-          `/api/get-all-products?name=${searchQuery}&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}&category=${category}`,
+          `/api/get-all-products?name=${searchQuery}&IsOutOfStock=${stockQuery}&page=${currentPage}&perPage=${ResultPerPage}&category=${category}&productType=${productType}`,
           "GET"
         );
         setProducts(response.data.products);
@@ -36,7 +37,7 @@ const Allproduct = () => {
       }
     };
     fetchData();
-  }, [searchQuery, category, stockQuery, currentPage, ResultPerPage]);
+  }, [searchQuery, category, stockQuery, currentPage, ResultPerPage,productType]);
   useEffect(() => {
     const a = Math.ceil(toalProduct / ResultPerPage);
     setTotalPages(a);
@@ -145,6 +146,17 @@ const Allproduct = () => {
           <div>
             <select
               className="add_product_input_filed add_product_dropdown"
+              value={productType}
+              onChange={(e) => setProductType(e.target.value)}
+            >
+              <option value="">All product</option> 
+              <option value="International">International</option>
+              <option value="Domestic">Domestic</option>
+            </select>
+          </div>
+          <div>
+            <select
+              className="add_product_input_filed add_product_dropdown"
               value={ResultPerPage}
               onChange={(e) => setResultPerPage(e.target.value)}
             >
@@ -185,6 +197,7 @@ const Allproduct = () => {
                     <p>Stock: {product.quantity}</p>
                     <p>Brand: {product.brand}</p>
                     <p>Brand: {product?.category?.name}</p>
+                    <p>Brand: {product?.productType}</p>
                   </div>
                   <div className="all_products_page_button">
                     <Link to={`/admin/product-update/${product._id}`}>

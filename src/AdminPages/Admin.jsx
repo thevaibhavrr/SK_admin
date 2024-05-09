@@ -17,6 +17,8 @@ import GetallCoupan from "../AdminComponents/Coupan/coupanallcatogory";
 import AddCoupan from "../AdminComponents/Coupan/coupanCreate";
 import EditCoupan from "../AdminComponents/Coupan/coupanUpdate";
 import CouponDetails from "../AdminComponents/Coupan/couapndetails";
+import AllUser from "../AdminComponents/User/allUser";
+import SubscribeUser from "../AdminComponents/User/subscribeUser";
 
 function Admin() {
 	return (
@@ -71,14 +73,14 @@ function Admin() {
 						path="/order/:id"
 						element={<Orderdetails />}
 					/>
-
-<Route path="/All-coupan" element={<GetallCoupan />} />
-<Route path="/add-coupan" element={<AddCoupan />} />
-<Route path="/update-coupan/:Id" element={<EditCoupan />} />
-<Route path="/coupan-details/:Id" element={<CouponDetails />} />
+			{/* coupan */}
+					<Route path="/All-coupan" element={<GetallCoupan />} />
+					<Route path="/add-coupan" element={<AddCoupan />} />
+					<Route path="/update-coupan/:Id" element={<EditCoupan />} />
+					<Route path="/coupan-details/:Id" element={<CouponDetails />} />
 					{/*           
 
-{/* admin */}
+				{/* admin */}
 					<Route
 						path="/admin-dashboard"
 						element={<Admindasboard />}
@@ -88,6 +90,16 @@ function Admin() {
 					<Route
 						path="/send-email"
 						element={<OfferPage />}
+					/>
+
+					{/* user */}
+					<Route
+					path="/all-user"
+					element={<AllUser/>}
+					/>
+					<Route
+					path="/subscribe-user"
+					element={<SubscribeUser/>}
 					/>
 				</Routes>
 			</div>

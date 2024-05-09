@@ -24,6 +24,14 @@ function LoginForm() {
       setLoading(true)
       const response = await makeApi("/api/login-user", "POST", { password, email })
       localStorage.setItem("token", response.data.token)
+      if (response.data.user.country === "IN") {
+        localStorage.setItem("country", "Domestic");
+      }
+      if (response.data.user.country !== "IN") {
+        console.log("International");
+
+        localStorage.setItem("country", "International");
+      }
       setIslogin(true)
       toast.success(response.data.message, {
         onClose: () => {
@@ -44,15 +52,15 @@ function LoginForm() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      const checkUserRole = async () => {
+      const checkUserRole = async () => { 
         try {
           const response = await makeApi("/api/my-profile", "GET");
           if (response.data.success === true) {
-            if (response.data.user.role === "admin") {
+            // if (response.data.user.role === "admin") {
               navigate("/admin/admin-dashboard")
-            } else {
-              navigate("https://palji-bakeryy.vercel.app/")
-            }
+            // } else {
+              // navigate("https://palji-bakeryy.vercel.app/")
+            // }
           }
         } catch (error) {
           console.log(error)
