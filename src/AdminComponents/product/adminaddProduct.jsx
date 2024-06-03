@@ -15,6 +15,8 @@ function AdminaddProduct() {
   const [discountPercentage, setDiscountPercentage] = useState("0");
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([{}]);
+  console.log("images", images);
+  console.log(images == "")
   const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
@@ -46,7 +48,8 @@ function AdminaddProduct() {
       requiredFields.push("Product Type");
       
     }
-    if (images.length == 1) {
+    console.log("----",images.length)
+    if (images == "") {
       requiredFields.push(" Product Images");
     }
 
