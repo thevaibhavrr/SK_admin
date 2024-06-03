@@ -23,6 +23,10 @@
   margin-right: 10px;
 }
 
+.admin_page_product_thumbnail{
+  max-height: 300px;
+}
+
 
 
 .inputBox_container {

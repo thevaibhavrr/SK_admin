@@ -189,7 +189,7 @@ const Allproduct = () => {
                   <img
                     src={product.thumbnail}
                     alt={product.name}
-                    className={product.quantity === 0 ? "bw-image" : ""}
+                    className={product.quantity === 0 ? "bw-image admin_page_product_thumbnail" : "admin_page_product_thumbnail"}
                   />
                   <div className="product-info">
                     <h3>{product.name}</h3>
