@@ -9,7 +9,7 @@ const OfferPage = () => {
           <html>
             <body>
               <h1>Special Offer!</h1>
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYZhSQxxDyy4Y7iwh-eAKsfOHDzv3WR9upjnES9Pm2w&s" alt="Offer" />
+              <img load="lazy" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYZhSQxxDyy4Y7iwh-eAKsfOHDzv3WR9upjnES9Pm2w&s" alt="Offer" />
               <p>Don't miss out on our exclusive sale. Limited time offer!</p>
             </body>
           </html>
@@ -26,7 +26,7 @@ const OfferPage = () => {
   return (
     <div className="offer-container">
       <h1>Special Offer!</h1>
-      <img
+      <img load="lazy"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYZhSQxxDyy4Y7iwh-eAKsfOHDzv3WR9upjnES9Pm2w&s"
         alt="Offer"
       />

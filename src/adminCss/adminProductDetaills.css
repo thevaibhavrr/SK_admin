@@ -40,6 +40,9 @@
 
 .productdisplay-img {
   margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+  min-width: auto;
 }
 
 .productdisplay-main-img {

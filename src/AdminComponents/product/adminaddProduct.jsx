@@ -11,7 +11,7 @@ function AdminaddProduct() {
   const [Loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [discountPercentage, setDiscountPercentage] = useState("0");
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([{}]);
@@ -48,7 +48,6 @@ function AdminaddProduct() {
       requiredFields.push("Product Type");
       
     }
-    console.log("----",images.length)
     if (images == "") {
       requiredFields.push(" Product Images");
     }
@@ -285,7 +284,7 @@ function AdminaddProduct() {
           ))}
           <div>
             {images.map((image, index) => (
-              <img src={image} alt="" width={150} height={150} />
+              <img load="lazy" src={image} alt="" width={150} height={150} />
             ))}
           </div>
           <div className="add_product_page_add_more_div">
@@ -327,7 +326,7 @@ function AdminaddProduct() {
             </div>
             <div>
               {thumbnail === "" ? (
-                <img
+                <img load="lazy"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRhb8uI0vKINdZJCfOmdIWu0uMBsKNCzlAk2myawr1rr3xFE-5g_B575p5H9V5S5nH3E&usqp=CAU"
                   alt="no image"
                   width={150}
@@ -336,9 +335,9 @@ function AdminaddProduct() {
               )
             
             :(
-              <img src={thumbnail} alt="thumbnail" width={150} height={150} />
+              <img load="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />
             )}
-              {/* {thumbnail && <img src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
+              {/* {thumbnail && <img load="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
             </div>
           </form>
 

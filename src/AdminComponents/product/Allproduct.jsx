@@ -178,7 +178,7 @@ const Allproduct = () => {
             <div>
               <div className="text-center">
                 {products.length === 0 && (
-                  <img src="https://prenixfurniture.com/image/noproduct.jpg" alt="no product" className="w-50 img-fluid" />
+                  <img load="lazy" src="https://prenixfurniture.com/image/noproduct.jpg" alt="no product" className="w-50 img-fluid" />
                 )}
               </div>
             </div>
@@ -186,7 +186,7 @@ const Allproduct = () => {
 
               {products.map((product) => ( 
                 <div key={product._id} className="product-card">
-                  <img
+                  <img load="lazy"
                     src={product.thumbnail}
                     alt={product.name}
                     className={product.quantity === 0 ? "bw-image admin_page_product_thumbnail" : "admin_page_product_thumbnail"}

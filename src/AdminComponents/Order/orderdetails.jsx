@@ -106,7 +106,7 @@ function Orderdetails() {
             <div className="user_section order_details_cards">
               <h3>User Details</h3>
               <div>
-                <img
+                <img load="lazy"
                   src={order?.userId?.userImage}
                   alt="User"
                   className="user-image"
@@ -200,7 +200,7 @@ function Orderdetails() {
               <div className="order_item_div_section_div" >
                 {order?.CartId?.orderItems?.map((item, index) => (
                   <div key={index} className="order_item_details_div" >
-                    <img
+                    <img load="lazy"
                       src={item?.productId?.thumbnail}
                       alt="Product"
                       className="product-thumbnail"

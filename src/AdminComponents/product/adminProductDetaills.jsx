@@ -67,7 +67,7 @@ function ProductDetails() {
                   <div className="productdisplay-img-list">
                     {product.image.map((item, i) => (
                       <div className='d-flex justify-content-center align-items-center' key={i}>
-                        <img
+                        <img load="lazy"
                           src={item}
                           alt=""
                           onClick={() => handleImageClick(item)}
@@ -77,7 +77,7 @@ function ProductDetails() {
                     ))}
                   </div>
                   <div className="productdisplay-img">
-                    <img
+                    <img load="lazy"
                       src={selectedImage || product.thumbnail}
                       alt=""
                       className="productdisplay-main-img"
@@ -100,11 +100,11 @@ function ProductDetails() {
                   <p><strong>Quantity:</strong> {product.quantity}</p>
                   <p><strong>Category:</strong> {product.category.name}</p>
                   <p><strong>Brand:</strong> {product.brand}</p>
-                  <p><strong>Thumbnail:</strong> <img src={product.thumbnail} alt="Thumbnail" style={{ maxWidth: '100px' }} /></p>
+                  <p><strong>Thumbnail:</strong> <img load="lazy" src={product.thumbnail} alt="Thumbnail" style={{ maxWidth: '100px' }} /></p>
                   <p><strong>Images:</strong></p>
                   <div className="product-images">
                     {product.image.map((img, index) => (
-                      <img key={index} src={img} alt={`Product Image ${index + 1}`} style={{ maxWidth: '100px', marginRight: '10px' }} />
+                      <img load="lazy" key={index} src={img} alt={`Product Image ${index + 1}`} style={{ maxWidth: '100px', marginRight: '10px' }} />
                     ))}
                   </div>
                   <p><strong>Sizes:</strong> {product.Size.join(", ")}</p>

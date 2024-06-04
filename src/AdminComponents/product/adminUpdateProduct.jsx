@@ -245,7 +245,7 @@ function UpdateProduct() {
                   type="text"
                   name="name"
                   value={formData?.name}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div>
@@ -253,7 +253,7 @@ function UpdateProduct() {
                   className="add_product_input_filed"
                   value={formData?.productType}
                   // onChange={(e) => setProductType(e.target.value)}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                   name="productType"
                 >
                   <option value="Domestic">Domestic</option>
@@ -265,7 +265,7 @@ function UpdateProduct() {
                 <textarea
                   name="description"
                   value={formData?.description}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div>
@@ -274,7 +274,7 @@ function UpdateProduct() {
                   type="number"
                   name="price"
                   value={formData?.price}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div>
@@ -283,7 +283,7 @@ function UpdateProduct() {
                   type="number"
                   name="discountPercentage"
                   value={formData?.discountPercentage}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div>
@@ -292,7 +292,7 @@ function UpdateProduct() {
                   type="number"
                   name="quantity"
                   value={formData?.quantity}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div>
@@ -301,13 +301,13 @@ function UpdateProduct() {
                   type="text"
                   name="category"
                   value={formData?.category}
-                  onChange={handleChange}
+                  onChange={ (e)=> handleChange(e)}
                 /> */}
                 <select
                   className="add_product_input_filed add_product_dropdown"
                   value={formData?.category}
                   name="category"
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 >
                   <option value="">Select Category</option>
                   {categories.map((category) => (
@@ -323,7 +323,7 @@ function UpdateProduct() {
                   type="text"
                   name="brand"
                   value={formData?.brand}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className="update_product_Image_section">
@@ -364,7 +364,7 @@ function UpdateProduct() {
                       </form>
                     </div>
                     <div>
-                      <img
+                      <img load="lazy"
                         src={imageUrl}
                         alt={`Image ${index + 1}`}
                         className="update_product_image"
@@ -423,7 +423,7 @@ function UpdateProduct() {
                 </div>
                 <div>
                   {formData?.thumbnail && (
-                    <img
+                    <img load="lazy"
                       src={formData?.thumbnail}
                       alt="Thumbnail"
                       className="update_product_image_thumbnail"

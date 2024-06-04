@@ -24,7 +24,7 @@ function Adminsidebar() {
       <div className="admin_sidebar">
         <div className="admin_sidebar_header">
           <div className="admin_sidebar_header_logo">
-            <img
+            <img load="lazy"
               alt="logo"
               src={Logo}
               className="admin_sidebar_header_logo_img"
