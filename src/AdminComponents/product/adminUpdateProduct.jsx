@@ -5,6 +5,9 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { makeApi } from "../../api/callApi";
 import Loader from "../../components/loader/loader";
 import axios from "axios";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+
 
 function UpdateProduct() {
   const navigate = useNavigate();
@@ -364,7 +367,7 @@ function UpdateProduct() {
                       </form>
                     </div>
                     <div>
-                      <img load="lazy"
+                      <LazyLoadImage effect="blur" load="lazy"
                         src={imageUrl}
                         alt={`Image ${index + 1}`}
                         className="update_product_image"
@@ -423,7 +426,7 @@ function UpdateProduct() {
                 </div>
                 <div>
                   {formData?.thumbnail && (
-                    <img load="lazy"
+                    <LazyLoadImage effect="blur" load="lazy"
                       src={formData?.thumbnail}
                       alt="Thumbnail"
                       className="update_product_image_thumbnail"
