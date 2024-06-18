@@ -19,6 +19,9 @@ import EditCoupan from "../AdminComponents/Coupan/coupanUpdate";
 import CouponDetails from "../AdminComponents/Coupan/couapndetails";
 import AllUser from "../AdminComponents/User/allUser";
 import SubscribeUser from "../AdminComponents/User/subscribeUser";
+import BannerManagement from "../AdminComponents/Offer/Banner";
+import AddBanner from "../AdminComponents/Offer/AddBanner";
+import AddEditBanner from "../AdminComponents/Offer/EditBanner";
 
 function Admin() {
 	return (
@@ -101,6 +104,13 @@ function Admin() {
 					path="/subscribe-user"
 					element={<SubscribeUser/>}
 					/>
+
+
+						{/* offer */}
+						<Route path="/offer-banner" element={<BannerManagement />} />
+						<Route  path ="/add-banner" element={<AddBanner />} />
+						<Route path='/edit-banner/:bannerId' element={<AddEditBanner/>} />
+
 				</Routes>
 			</div>
 		</div>

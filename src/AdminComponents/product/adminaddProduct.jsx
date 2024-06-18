@@ -15,8 +15,6 @@ function AdminaddProduct() {
   const [discountPercentage, setDiscountPercentage] = useState("0");
   const [quantity, setQuantity] = useState("");
   const [images, setImages] = useState([{}]);
-  console.log("images", images);
-  console.log(images == "")
   const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");

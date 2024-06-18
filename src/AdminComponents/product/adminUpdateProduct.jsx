@@ -154,7 +154,6 @@ function UpdateProduct() {
 
               // const files = Array.from(e.target.files);
               // const imageUrls = files.map((file) => URL.createObjectURL(file));
-              console.log("imageUrlsimageUrlsimageUrls", imageUrls);
               setFormData((prevFormData) => {
                 const updatedImages = [...prevFormData.image];
                 updatedImages[index] = imageUrls;

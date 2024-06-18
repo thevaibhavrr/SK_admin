@@ -71,8 +71,14 @@ function Adminsidebar() {
             </Link>
             <Link className="Link_tag" to={"/admin/all-user"}>
               <div className={`admin_sidebar_menu_items ${selectedItem === "All Users" && "selected"}`} onClick={() => handleMenuItemClick("All Users")} >Users</div ></Link>
-              <Link className="Link_tag" to={"/admin/subscribe-user"}>
-                <div className={`admin_sidebar_menu_items ${selectedItem === "Subscribe Users" && "selected"}`} onClick={() => handleMenuItemClick("Subscribe Users")} >Subscribe Users</div ></Link>
+            <Link className="Link_tag" to={"/admin/subscribe-user"}>
+              <div className={`admin_sidebar_menu_items ${selectedItem === "Subscribe Users" && "selected"}`} onClick={() => handleMenuItemClick("Subscribe Users")} >Subscribe Users</div ></Link>
+
+                  <Link className="Link_tag" to={"/admin/offer-banner"}>
+              <div className={`admin_sidebar_menu_items ${selectedItem === "Banner" && "selected"}`} onClick={() => handleMenuItemClick("Banner")} >Banner</div >
+              </Link>
+
+
           </div>
         </div>
       </div>
