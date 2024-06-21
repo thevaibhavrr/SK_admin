@@ -282,7 +282,7 @@
 //           ))}
 //           <div>
 //             {images.map((image, index) => (
-//               <img load="lazy" src={image} alt="" width={150} height={150} />
+//               <img loading="lazy" src={image} alt="" width={150} height={150} />
 //             ))}
 //           </div>
 //           <div className="add_product_page_add_more_div">
@@ -324,7 +324,7 @@
 //             </div>
 //             <div>
 //               {thumbnail === "" ? (
-//                 <img load="lazy"
+//                 <img loading="lazy"
 //                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWRhb8uI0vKINdZJCfOmdIWu0uMBsKNCzlAk2myawr1rr3xFE-5g_B575p5H9V5S5nH3E&usqp=CAU"
 //                   alt="no image"
 //                   width={150}
@@ -333,9 +333,9 @@
 //               )
             
 //             :(
-//               <img load="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />
+//               <img loading="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />
 //             )}
-//               {/* {thumbnail && <img load="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
+//               {/* {thumbnail && <img loading="lazy" src={thumbnail} alt="thumbnail" width={150} height={150} />} */}
 //             </div>
 //           </form>
 
@@ -630,7 +630,7 @@ function AdminaddProduct() {
               )}
               {image && (
                 <img
-                  load="lazy"
+                  loading="lazy"
                   src={image}
                   alt={`Product ${index + 1}`}
                   width={150}
@@ -690,7 +690,7 @@ function AdminaddProduct() {
               )}
               {thumbnail && (
                 <img
-                  load="lazy"
+                  loading="lazy"
                   src={thumbnail}
                   alt="Thumbnail"
                   width={150}

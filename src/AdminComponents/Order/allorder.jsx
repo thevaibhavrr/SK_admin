@@ -82,7 +82,7 @@ function AllOrder() {
                     {order.CartId?.orderItems?.map((item) => (
                       <div key={item?._id} className="order_item_details">
                         <div>
-                          <img load="lazy" src={item?.productId?.thumbnail} alt="thumbnail" className="all_order_thumbnail" />
+                          <img loading="lazy" src={item?.productId?.thumbnail} alt="thumbnail" className="all_order_thumbnail" />
                         </div>
                         <div>
                           <p><b>Name:</b> {item?.productId?.name}</p>

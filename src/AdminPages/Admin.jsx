@@ -22,6 +22,9 @@ import SubscribeUser from "../AdminComponents/User/subscribeUser";
 import BannerManagement from "../AdminComponents/Offer/Banner";
 import AddBanner from "../AdminComponents/Offer/AddBanner";
 import AddEditBanner from "../AdminComponents/Offer/EditBanner";
+import AllExistOfferBanner from "../AdminComponents/Offer/existOfferBanner/Banner";
+import AddExistOfferBanner from "../AdminComponents/Offer/existOfferBanner/AddBanner";
+import EditExistOfferBanner from "../AdminComponents/Offer/existOfferBanner/EditBanner";
 
 function Admin() {
 	return (
@@ -111,6 +114,10 @@ function Admin() {
 						<Route  path ="/add-banner" element={<AddBanner />} />
 						<Route path='/edit-banner/:bannerId' element={<AddEditBanner/>} />
 
+							{/* existing offer */}
+							<Route path="/exist-offer-banner" element={<AllExistOfferBanner />} />
+							<Route path="/add-existing-banner" element={<AddExistOfferBanner />} />
+							<Route path='/edit-existing-banner/:bannerId' element={<EditExistOfferBanner/>} />
 				</Routes>
 			</div>
 		</div>

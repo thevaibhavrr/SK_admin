@@ -24,7 +24,7 @@ function Adminsidebar() {
       <div className="admin_sidebar">
         <div className="admin_sidebar_header">
           <div className="admin_sidebar_header_logo">
-            <img load="lazy"
+            <img loading="lazy"
               alt="logo"
               src={Logo}
               className="admin_sidebar_header_logo_img"
@@ -76,6 +76,9 @@ function Adminsidebar() {
 
                   <Link className="Link_tag" to={"/admin/offer-banner"}>
               <div className={`admin_sidebar_menu_items ${selectedItem === "Banner" && "selected"}`} onClick={() => handleMenuItemClick("Banner")} >Banner</div >
+              </Link>
+                  <Link className="Link_tag" to={"/admin/exist-offer-banner"}>
+              <div className={`admin_sidebar_menu_items ${selectedItem === " Exist offer Banner " && "selected"}`} onClick={() => handleMenuItemClick(" Exist offer Banner ")} >Exist offer Banner</div >
               </Link>
 
 

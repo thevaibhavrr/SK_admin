@@ -365,7 +365,7 @@
 //                       </form>
 //                     </div>
 //                     <div>
-//                       <LazyLoadImage effect="blur" load="lazy"
+//                       <LazyLoadImage effect="blur" loading="lazy"
 //                         src={imageUrl}
 //                         alt={`Image ${index + 1}`}
 //                         className="update_product_image"
@@ -424,7 +424,7 @@
 //                 </div>
 //                 <div>
 //                   {formData?.thumbnail && (
-//                     <LazyLoadImage effect="blur" load="lazy"
+//                     <LazyLoadImage effect="blur" loading="lazy"
 //                       src={formData?.thumbnail}
 //                       alt="Thumbnail"
 //                       className="update_product_image_thumbnail"

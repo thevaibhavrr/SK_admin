@@ -226,7 +226,7 @@ const AddCoupan = () => {
                     />
                     <label htmlFor={product._id}>{product.name}</label>
                     {/* add thumbnil */}
-                    <div className="" > <img load="lazy" src={product.thumbnail} alt={product.name} width="80px" height="80px" /> </div>
+                    <div className="" > <img loading="lazy" src={product.thumbnail} alt={product.name} width="80px" height="80px" /> </div>
                   </div>
                 ))}
               </div>

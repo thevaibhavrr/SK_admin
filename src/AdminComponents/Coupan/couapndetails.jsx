@@ -72,7 +72,7 @@ const CouponDetails = () => {
                   {couponData.applicableProducts.map((product) => (
                     <li key={product._id}>
                       <div className="product-details">
-                        <img load="lazy"
+                        <img loading="lazy"
                           src={product.thumbnail}
                           alt={product.name}
                           className="product-thumbnail"
