@@ -45,7 +45,7 @@ function AllOrder() {
     <div className="all-orders-container">
       <div className="all_orders_status_buttons">
         <button
-          className={`admin_add_product_button ${selectedStatus === "Pending" ? "selectedStatus" : ""}`}
+          className={`admin_add_product_button  ${selectedStatus === "Pending" ? "selectedStatus" : ""}`}
           onClick={() => handleStatusChange("Pending")}
         >
           Pending Orders
@@ -94,7 +94,7 @@ function AllOrder() {
                   <div className="order_details all_order_details">
                     <div><b>Order Id:</b> {order?._id}</div>
                     <div><b>Status:</b> {order?.status}</div>
-                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
+                    <div><b>Total Price:</b>  {order?.CartId?.totalPrice.toFixed(2)}</div>
                   </div>
                   <div className="all_order_shippingAddress all_order_details">
                     <div><b>Pincode:</b> {order?.shippingAddress?.pincode}</div>
@@ -106,7 +106,7 @@ function AllOrder() {
                     <div><b>Created At:</b> {new Date(order?.createdAt).toLocaleString("en-US", { timeZone: "UTC" })}</div>
                   </div>
                   <div className="all_order_price_details all_order_details">
-                    <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div>
+                    {/* <div><b>Total Price:</b> {order?.CartId?.totalPrice}</div> */}
                     <div><b>Shipping Price:</b> {order?.CartId?.shippingPrice}</div>
                     <div><b>Tax Price:</b> {order?.CartId?.taxPrice}</div>
                   </div>

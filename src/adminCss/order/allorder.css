@@ -35,7 +35,7 @@ gap: 40px;
 }
 
 .admin_add_product_button.selectedStatus {
-  background-color: #008CBA;
+  background-color: #008CBA !important;
 }
 
 

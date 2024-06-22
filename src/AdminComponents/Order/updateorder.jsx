@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { makeApi } from "../../api/callApi";
 import "../../adminCss/order/updateorder.css";
@@ -20,14 +21,15 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
           `/api/get-second-order-by-id/${orderId}`,
           "GET"
         );
-        setOrder(response.data.secondorder);
+        const orderData = response.data.secondorder;
+        setOrder(orderData);
         setUpdatedOrderData({
-          paymentMethod: response.data.secondorder.paymentMethod,
-          isPaid: response.data.secondorder.isPaid,
-          paidAt: response.data.secondorder.paidAt,
-          isDelivered: response.data.secondorder.isDelivered,
-          deliveredAt: response.data.secondorder.deliveredAt,
-          status: response.data.secondorder.status,
+          paymentMethod: orderData.paymentMethod,
+          isPaid: orderData.isPaid,
+          paidAt: orderData.paidAt ? new Date(orderData.paidAt).toISOString().slice(0, 16) : "",
+          isDelivered: orderData.isDelivered,
+          deliveredAt: orderData.deliveredAt ? new Date(orderData.deliveredAt).toISOString().slice(0, 16) : "",
+          status: orderData.status,
         });
       } catch (error) {
         console.log(error);
@@ -45,7 +47,6 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
     });
   };
 
- 
   const handleUpdateOrder = async () => {
     try {
       const response = await makeApi(
@@ -53,7 +54,7 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
         "PUT",
         updatedOrderData
       );
-      console.log(response, "udpated");
+      console.log(response, "updated");
       onClose();
     } catch (error) {
       console.log(error);
@@ -79,18 +80,20 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
               value={updatedOrderData.paymentMethod}
               onChange={handleInputChange}
             />
-            <div>
-              <label>Is Paid:</label>
-              <select
-                name="isPaid"
-                className="update_order_input_fileds"
-                value={updatedOrderData.isPaid}
-                onChange={handleInputChange}
-              >
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-            </div>
+            {updatedOrderData.status !== "Delivered" && (
+              <div>
+                <label>Is Paid:</label>
+                <select
+                  name="isPaid"
+                  className="update_order_input_fileds"
+                  value={updatedOrderData.isPaid}
+                  onChange={handleInputChange}
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+            )}
             <div>
               <label>Paid At:</label>
               <input
@@ -100,6 +103,18 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
                 value={updatedOrderData.paidAt}
                 onChange={handleInputChange}
               />
+            </div>
+            <div>
+              <label>paymentMethod</label>
+              <select
+                name="paymentMethod"
+                className="update_order_input_fileds"
+                value={updatedOrderData.paymentMethod}
+                onChange={handleInputChange}
+              >
+                <option value="Cash On Delievery">Cash On Delievery</option>
+                <option value="Razorpay">Razorpay</option>
+              </select>
             </div>
             <div>
               <label>Is Delivered:</label>
@@ -136,7 +151,8 @@ const UpdateOrderPopup = ({ orderId, onClose }) => {
                 <option value="Delivered">Delivered</option>
                 <option value="Shipped">Shipped</option>
               </select>
-            </div>
+            </div> 
+
           </div>
           <div className="button-group">
             <button onClick={handleClose}>Close</button>
