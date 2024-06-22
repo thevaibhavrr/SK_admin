@@ -40,7 +40,9 @@ function AllOrder() {
   const handleClose = () => {
     setSelectedOrderId(null);
   };
-
+  const formatNumber = (number) => {
+    return Math.round(number).toString();
+};
   return (
     <div className="all-orders-container">
       <div className="all_orders_status_buttons">
@@ -94,7 +96,8 @@ function AllOrder() {
                   <div className="order_details all_order_details">
                     <div><b>Order Id:</b> {order?._id}</div>
                     <div><b>Status:</b> {order?.status}</div>
-                    <div><b>Total Price:</b>  {order?.CartId?.totalPrice.toFixed(2)}</div>
+                    {/* <div><b>Total Price:</b>  {order?.CartId?.totalPrice.toFixed(2)}</div> */}
+                    <div><b>Total Price:</b>  {formatNumber(order?.CartId?.totalPrice)}</div>
                   </div>
                   <div className="all_order_shippingAddress all_order_details">
                     <div><b>Pincode:</b> {order?.shippingAddress?.pincode}</div>
