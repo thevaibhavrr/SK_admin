@@ -47,6 +47,7 @@
 
 .productdisplay-main-img {
   width: 100%;
+  object-fit: contain;
 }
 
 .product-display-right {
