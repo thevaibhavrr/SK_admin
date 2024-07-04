@@ -124,11 +124,11 @@
 
 //         const data = new FormData();
 //         data.append("file", compressedFile);
-//         data.append("upload_preset", "ou1fk438");
+//         data.append("upload_preset", "wnsxe2pa");
 
 //         await axios
 //           .post(
-//             `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+//             `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
 
 //             data
 //           )
@@ -156,11 +156,11 @@
 
 //         const data = new FormData();
 //         data.append("file", compressedFile);
-//         data.append("upload_preset", "ou1fk438");
+//         data.append("upload_preset", "wnsxe2pa");
 
 //         await axios
 //           .post(
-//             `https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`,
+//             `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
 
 //             data
 //           )
@@ -495,9 +495,9 @@ function AdminaddProduct() {
       if (file) {
         const data = new FormData();
         data.append("file", file);
-        data.append("upload_preset", "ou1fk438");
+        data.append("upload_preset", "wnsxe2pa");
 
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`, data, {
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
           onUploadProgress: (progressEvent) => {
             const { loaded, total } = progressEvent;
             const percentage = Math.floor((loaded * 100) / total);
@@ -522,9 +522,9 @@ function AdminaddProduct() {
       if (file) {
         const data = new FormData();
         data.append("file", file);
-        data.append("upload_preset", "ou1fk438");
+        data.append("upload_preset", "wnsxe2pa");
 
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload`, data, {
+        const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
           onUploadProgress: (progressEvent) => {
             const { loaded, total } = progressEvent;
             const percentage = Math.floor((loaded * 100) / total);

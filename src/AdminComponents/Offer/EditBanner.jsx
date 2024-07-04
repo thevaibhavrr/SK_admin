@@ -9,7 +9,6 @@ function AddEditBanner() {
 
   const { bannerId } = useParams();
   const [offerBanner, setOfferBanner] = useState('');
-  console.log("vvvvvvvvvvvv", offerBanner);
   const [BannerFor, setBannerFor] = useState('');
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -58,9 +57,9 @@ function AddEditBanner() {
       if (file) {
         const data = new FormData();
         data.append('file', file);
-        data.append('upload_preset', 'ou1fk438');
+        data.append('upload_preset', 'wnsxe2pa');
 
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dyl3gzm7d/image/upload', data);
+        const response = await axios.post('https://api.cloudinary.com/v1_1/dzvsrft15/image/upload', data);
 
         if (response.status === 200) {
           setOfferBanner(response.data.url);
