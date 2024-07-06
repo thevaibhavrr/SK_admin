@@ -2,16 +2,21 @@
 import React, { useEffect, useState } from 'react';
 import { makeApi } from '../../api/callApi';
 import axios from 'axios';
-import { useParams ,useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import uploadToCloudinary from '../../utils/cloudinaryUpload';
+import { fetchCategory } from '../../utils/CFunctions';
 
 function AddEditBanner() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { bannerId } = useParams();
   const [offerBanner, setOfferBanner] = useState('');
   const [BannerFor, setBannerFor] = useState('');
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [selectcategory, setCategory] = useState("");
+
 
   useEffect(() => {
     if (bannerId) {
@@ -25,6 +30,7 @@ function AddEditBanner() {
       const response = await makeApi(`/api/get-single-banner/${bannerId}`, 'GET');
       setOfferBanner(response.data.banner.bannerImage);
       setBannerFor(response.data.banner.BannerFor);
+      setCategory(response.data.banner.BannerCategory);
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +38,13 @@ function AddEditBanner() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const banner = { bannerImage: offerBanner, BannerFor };
+    const banner = {
+      bannerImage: offerBanner, BannerFor,
+
+      BannerCategory: selectcategory,
+
+
+    };
 
     try {
       setLoading(true);
@@ -53,22 +65,25 @@ function AddEditBanner() {
   const handleImageUpload = async (event) => {
     try {
       const file = event.target.files[0];
-
       if (file) {
-        const data = new FormData();
-        data.append('file', file);
-        data.append('upload_preset', 'wnsxe2pa');
-
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dzvsrft15/image/upload', data);
-
-        if (response.status === 200) {
-          setOfferBanner(response.data.url);
-        }
+        const uploadedImageUrl = await uploadToCloudinary(file);
+        setOfferBanner(uploadedImageUrl);
       }
     } catch (error) {
       console.log('image upload error', error);
     }
   };
+  useEffect(() => {
+    setLoading(true);
+    try {
+      fetchCategory().then((data) => setCategories(data.categories));
+    } catch (error) {
+      console.log("Error fetching categories:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
 
   return (
     <div className='p-5'>
@@ -94,6 +109,22 @@ function AddEditBanner() {
           {offerBanner && (
             <img src={offerBanner} alt='Banner' width={150} height={150} />
           )}
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={selectcategory}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option>Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
         <button type='submit' className='btn btn-success'>
           {loading ? 'Saving...' : 'Save'}

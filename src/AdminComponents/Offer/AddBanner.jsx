@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeApi } from '../../api/callApi';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import uploadToCloudinary from '../../utils/cloudinaryUpload';
+import { fetchCategory } from '../../utils/CFunctions';
 
 function AddBanner() {
   const navigate = useNavigate();
   const [offerBanner, setOfferBanner] = useState("");
   const [bannerFor, setBannerFor] = useState("");
+  const [selectcategory, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [categories, setCategories] = useState([]);
 
   const handleSubmitBanner = async (e) => {
     e.preventDefault();
     const banner = {
       bannerImage: offerBanner,
-      BannerFor: bannerFor
+      BannerFor: bannerFor,
+      BannerCategory: selectcategory,
     };
     try {
       setLoading(true);
@@ -28,32 +32,28 @@ function AddBanner() {
   };
 
   const handleImageUpload = async (event) => {
-    try {
-      const file = event.target.files[0];
-      if (file) {
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "wnsxe2pa");
-
-        const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
-          data,
-          {
-            onUploadProgress: (progressEvent) => {
-              const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-              setUploadProgress(percentCompleted);
-            }
-          }
-        );
-
-        if (response.status === 200) {
-          setOfferBanner(response.data.url);
-        }
+    const file = event.target.files[0];
+    if (file) {
+      try {
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
+        setOfferBanner(uploadedImageUrl);
+      } catch (error) {
+        console.error("Image upload error:", error);
       }
-    } catch (error) {
-      console.error("Image upload error:", error);
     }
   };
+  useEffect(() => {
+    setLoading(true);
+    try {
+    fetchCategory().then((data) => setCategories(data.categories));
+    } catch (error) {
+      console.log("Error fetching categories:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []); 
+
+  
 
   return (
     <div className='container my-4'>
@@ -110,6 +110,22 @@ function AddBanner() {
               <progress value={uploadProgress} max="100" />
             )}
           </div>
+        </div>
+        <div>
+          <h5>Categories</h5>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={selectcategory}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option>Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="col-12 mt-3">
