@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { makeApi } from '../../../api/callApi';
 import axios from 'axios';
 import { useParams ,useNavigate } from 'react-router-dom';
+import uploadToCloudinary from '../../../utils/cloudinaryUpload';
 
 function EditExistOfferBanner() {
     const navigate = useNavigate();
@@ -12,6 +13,7 @@ function EditExistOfferBanner() {
   const [BannerFor, setBannerFor] = useState('');
   const [loading, setLoading] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
     if (bannerId) {
@@ -36,16 +38,12 @@ function EditExistOfferBanner() {
 
     try {
       setLoading(true);
-      if (isEdit) {
-        await makeApi(`/api/get-single-existing-banner/${bannerId}`, 'PUT', banner);
-      } else {
-        await makeApi('/api/create-existing-banner', 'POST', banner);
-      }
+        await makeApi(`/api/update-existing-banner/${bannerId}`, 'PUT', banner);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
-      navigate("/admin/offer-banner")
+      navigate("/admin/exist-offer-banner")
 
     }
   };
@@ -55,15 +53,19 @@ function EditExistOfferBanner() {
       const file = event.target.files[0];
 
       if (file) {
-        const data = new FormData();
-        data.append('file', file);
-        data.append('upload_preset', 'wnsxe2pa');
+        // const data = new FormData();
+        // data.append('file', file);
+        // data.append('upload_preset', 'wnsxe2pa');
 
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dzvsrft15/image/upload', data);
+        // const response = await axios.post('https://api.cloudinary.com/v1_1/dzvsrft15/image/upload', data);
 
-        if (response.status === 200) {
-          setOfferBanner(response.data.url);
-        }
+        // if (response.status === 200) {
+        //   setOfferBanner(response.data.url);
+        // }
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
+        setOfferBanner(uploadedImageUrl);
+
+
       }
     } catch (error) {
       console.log('image upload error', error);
@@ -84,6 +86,7 @@ function EditExistOfferBanner() {
             required
           />
         </div>
+        <div>{uploadProgress}</div>
         <div className='form-group'>
           <label>Upload Banner</label>
           <input

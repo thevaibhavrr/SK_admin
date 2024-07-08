@@ -6,7 +6,7 @@ import { makeApi } from "../../api/callApi";
 import Loader from "../../components/loader/loader";
 import axios from "axios";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-
+import uploadToCloudinary from "../../utils/cloudinaryUpload";
 function UpdateProduct() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -14,14 +14,16 @@ function UpdateProduct() {
   const [loading, setLoading] = useState(false);
   const [updateloader, setUpdateLoader] = useState(false);
   const [product, setProduct] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState({});
+  const [uploadProgress, setUploadProgress] = useState(0);
+  console.log("----",uploadProgress);
+
   const [thumbnailUploadProgress, setThumbnailUploadProgress] = useState(0);
 
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     price: "",
-    quantity: "",
+    quantity: "", 
     category: "",
     brand: "",
     image: [],
@@ -113,31 +115,37 @@ function UpdateProduct() {
     try {
       const file = event.target.files[0];
       if (file) {
-        const compressedFile = await file;
 
-        const data = new FormData(); 
-        data.append("file", compressedFile);
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
+
+        // const compressedFile = await file;
+
+        // const data = new FormData(); 
+        // data.append("file", compressedFile);
         // data.append("upload_preset", "wnsxe2pa");
-        data.append("upload_preset", "wnsxe2pa");
+        // data.append("upload_preset", "wnsxe2pa");
 
-        const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
-          data,
-          {
-            onUploadProgress: (progressEvent) => {
-              const percentCompleted = Math.round(
-                (progressEvent.loaded * 100) / progressEvent.total
-              );
-              setUploadProgress((prevProgress) => ({
-                ...prevProgress,
-                [index]: percentCompleted,
-              }));
-            },
-          }
-        );
+        // const response = await axios.post(
+          // `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
+          // data,
+          // {
+          //   onUploadProgress: (progressEvent) => {
+          //     const percentCompleted = Math.round(
+          //       (progressEvent.loaded * 100) / progressEvent.total
+          //     );
+          //     setUploadProgress((prevProgress) => ({
+          //       ...prevProgress,
+          //       [index]: percentCompleted,
+          //     }));
+          //   },
+          // }
+        // );
 
-        if (response.status === 200) {
-          const imageUrl = response.data.url;
+
+        // if (response.status === 200) {
+          // const imageUrl = response.data.url;
+          const imageUrl = uploadedImageUrl;
+    
           setFormData((prevFormData) => {
             const updatedImages = [...prevFormData.image];
             updatedImages[index] = imageUrl;
@@ -146,7 +154,7 @@ function UpdateProduct() {
               image: updatedImages,
             };
           });
-        }
+        // }
       }
     } catch (error) {
       console.log("Image upload error", error);
@@ -157,39 +165,42 @@ function UpdateProduct() {
     try {
       const file = event.target.files[0];
       if (file) {
-        const compressedFile = await file;
+        
 
-        const data = new FormData();
-        data.append("file", compressedFile);
-        data.append("upload_preset", "wnsxe2pa");
+        // const compressedFile = await file;
 
-        const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
-          data,
-          {
-            onUploadProgress: (progressEvent) => {
-              const percentCompleted = Math.round(
-                (progressEvent.loaded * 100) / progressEvent.total
-              );
-              setThumbnailUploadProgress(percentCompleted);
-            },
-          }
-        );
+        // const data = new FormData();
+        // data.append("file", compressedFile);
+        // data.append("upload_preset", "wnsxe2pa");
 
-        if (response.status === 200) {
-          const imageUrl = response.data.url;
+        // const response = await axios.post(
+        //   `https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`,
+        //   data,
+        //   {
+        //     onUploadProgress: (progressEvent) => {
+        //       const percentCompleted = Math.round(
+        //         (progressEvent.loaded * 100) / progressEvent.total
+        //       );
+        //       setThumbnailUploadProgress(percentCompleted);
+        //     },
+        //   }
+        // );
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
+
+        // if (response.status === 200) {
+          // const imageUrl = response.data.url;
+          const imageUrl = uploadedImageUrl;
           setFormData((prevFormData) => ({
             ...prevFormData,
             thumbnail: imageUrl,
           }));
-        }
+        // }
       }
     } catch (error) {
       console.log("Thumbnail upload error", error);
     }
   };
 
-  console.log(formData.category);
 
   return (
     <>
@@ -321,6 +332,7 @@ function UpdateProduct() {
                       name={`image_${index}`}
                       onChange={(event) => handleImageUpload(event, index)}
                     />
+                    <h6>{uploadProgress}</h6>
                     {uploadProgress[index] && (
                       <progress value={uploadProgress[index]} max="100" />
                     )}

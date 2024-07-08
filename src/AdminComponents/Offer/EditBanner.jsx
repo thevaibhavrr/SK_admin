@@ -12,10 +12,11 @@ function AddEditBanner() {
   const { bannerId } = useParams();
   const [offerBanner, setOfferBanner] = useState('');
   const [BannerFor, setBannerFor] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
   const [isEdit, setIsEdit] = useState(false);
   const [categories, setCategories] = useState([]);
   const [selectcategory, setCategory] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
 
 
   useEffect(() => {
@@ -66,7 +67,7 @@ function AddEditBanner() {
     try {
       const file = event.target.files[0];
       if (file) {
-        const uploadedImageUrl = await uploadToCloudinary(file);
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
         setOfferBanner(uploadedImageUrl);
       }
     } catch (error) {
@@ -99,6 +100,7 @@ function AddEditBanner() {
             required
           />
         </div>
+          <h3>{uploadProgress}</h3>
         <div className='form-group'>
           <label>Upload Banner</label>
           <input
