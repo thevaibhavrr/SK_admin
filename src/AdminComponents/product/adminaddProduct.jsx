@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchCategory } from "../../utils/CFunctions";
+import uploadToCloudinary from "../../utils/cloudinaryUpload";
 
 function AdminaddProduct() {
   const [categories, setCategories] = useState([]);
@@ -111,23 +112,27 @@ function AdminaddProduct() {
     try {
       const file = event.target.files[0];
       if (file) {
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "wnsxe2pa");
 
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
-          onUploadProgress: (progressEvent) => {
-            const { loaded, total } = progressEvent;
-            const percentage = Math.floor((loaded * 100) / total);
-            setUploadProgress((prev) => ({ ...prev, [index]: percentage }));
-          },
-        });
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
 
-        if (response.status === 200) {
-          const imageURL = response.data.url;
+
+        // const data = new FormData();
+        // data.append("file", file);
+        // data.append("upload_preset", "wnsxe2pa");
+
+        // const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
+        //   onUploadProgress: (progressEvent) => {
+        //     const { loaded, total } = progressEvent;
+        //     const percentage = Math.floor((loaded * 100) / total);
+        //     setUploadProgress((prev) => ({ ...prev, [index]: percentage }));
+        //   },
+        // }); 
+
+        // if (response.status === 200) {
+          const imageURL = uploadedImageUrl;
           handleImageChange(index, imageURL);
-          setUploadProgress((prev) => ({ ...prev, [index]: 100 }));
-        }
+          // setUploadProgress((prev) => ({ ...prev, [index]: 100 }));
+        // }
       }
     } catch (error) {
       console.log("Image upload error", error);
@@ -138,23 +143,26 @@ function AdminaddProduct() {
     try {
       const file = event.target.files[0];
       if (file) {
-        const data = new FormData();
-        data.append("file", file);
-        data.append("upload_preset", "wnsxe2pa");
+        console.log(file);
+        const uploadedImageUrl = await uploadToCloudinary(file, setUploadProgress);
 
-        const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
-          onUploadProgress: (progressEvent) => {
-            const { loaded, total } = progressEvent;
-            const percentage = Math.floor((loaded * 100) / total);
-            setThumbnailUploadProgress(percentage);
-          },
-        });
+        // const data = new FormData();
+        // data.append("file", file);
+        // data.append("upload_preset", "wnsxe2pa");
 
-        if (response.status === 200) {
-          const imageURL = response.data.url;
+        // const response = await axios.post(`https://api.cloudinary.com/v1_1/dzvsrft15/image/upload`, data, {
+        //   onUploadProgress: (progressEvent) => {
+        //     const { loaded, total } = progressEvent;
+        //     const percentage = Math.floor((loaded * 100) / total);
+        //     setThumbnailUploadProgress(percentage);
+        //   },
+        // });
+
+        // if (response.status === 200) {
+          const imageURL = uploadedImageUrl;
           setThumbnail(imageURL);
           setThumbnailUploadProgress(100);
-        }
+        // }
       }
     } catch (error) {
       console.log("Thumbnail upload error", error);
